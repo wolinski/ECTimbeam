@@ -17,6 +17,14 @@ class Solver:
         q = self.beam.qload
         V = q*l/2
         return V
+
+    def plot_beam(self):
+        l = self.beam.length
+        beam_color = 'black'
+        plt.plot(0,0, marker = 6, markersize = 17, mfc = beam_color, mec = beam_color)
+        plt.plot(l,0, marker = 6, markersize = 17, mfc = beam_color, mec = beam_color)
+        plt.hlines(y=0, xmin=0, xmax=l, colors= beam_color)
+
     def plot_moment(self):
         l = self.beam.length
         q = self.beam.qload
@@ -24,20 +32,23 @@ class Solver:
         x = np.arange(0,l+step,step)
         Ra = q*l/2
         Mx = (Ra*x - q*x**2/2)*-1
-        # target is to split plot beam into different function
-        beam_color = 'black'
-        plt.plot(0,0, marker = 6, markersize = 17, mfc = beam_color, mec = beam_color)
-        plt.plot(l,0, marker = 6, markersize = 17, mfc = beam_color, mec = beam_color)
-        plt.hlines(y=0, xmin=0, xmax=l, colors= beam_color)
+        self.plot_beam()
         plt.plot(x,Mx, color='blue')
         plt.xlim(-3,l+3)
         max_y = min(Mx)
-        print(max_y)
         plt.annotate(text=str(max_y), xy=(l/2,max_y))
         plt.xlabel('L [m]')
         plt.ylabel('M [kNm]')
         plt.title('Moment zginajacy My')
-        #plt.show()
         plt.axis('off')
         plt.savefig('Raport\\Figures\My.png')
+
+    def plot_shear(self):
+        pass
+
+    def calc_deflection(self):
+        pass
+
+    def plot_deflection(self):
+        pass
     

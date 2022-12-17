@@ -24,4 +24,4 @@ solver = Solver(beam)
 #print(solver.calc_moment())
 #print(solver.calc_shear())
 
-print(solver.plot_moment())
+solver.plot_moment()
