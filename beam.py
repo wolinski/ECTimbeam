@@ -1,4 +1,5 @@
 import math
+from csvreader import CsvReader
 
 class Beam:
     def __init__(self, length = 1.0, section = "10x20", material = "C18", q_load = 0.0):
@@ -9,8 +10,13 @@ class Beam:
         self.section = section
         self.material = material
         self.qload = q_load
+        self.get_sec_material()
         self.section_properties()
     
+    def get_sec_material(self):
+        csvreader = CsvReader(path="data\wood_classes.csv")
+        self.E = float(csvreader.get_key_value(key_value=self.material, prop_name="E_0mean"))
+            
     def get_section_dim(self):
         bxh = self.section.split('x')
         b = float(bxh[0])*10 # mm

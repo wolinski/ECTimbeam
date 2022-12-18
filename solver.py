@@ -47,8 +47,23 @@ class Solver:
         pass
 
     def calc_deflection(self):
-        pass
+        l = self.beam.length
+        q = self.beam.qload
+        E = self.beam.E
+        Iy = self.beam.Iy
+        u = (5/384)*(q*l**4 / E*Iy)
+        return u
 
     def plot_deflection(self):
-        pass
+        l = self.beam.length
+        q = self.beam.qload
+        E = self.beam.E
+        Iy = self.beam.Iy
+        step = 0.1
+        x = np.arange(0,l+step,step)
+        uz = (1/E*Iy * ((q*x**4/24) - (q*l*x**3)/12 + (q*l**3*x)/24 ))*-1         
+        self.plot_beam()
+        plt.plot(x,uz, color='blue')
+        plt.xlim(-3,l+3)
+        plt.show()
     

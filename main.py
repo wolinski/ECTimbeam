@@ -8,8 +8,6 @@ beam.section = "10x22" # cm x cm
 beam.material = "C24" 
 
 # material properties depending on timber class
-csvreader = CsvReader(path="data\wood_classes.csv")
-E = csvreader.get_key_value(key_value=beam.material, prop_name="E_0mean")
 
 
 # defining load
@@ -24,4 +22,5 @@ solver = Solver(beam)
 #print(solver.calc_moment())
 #print(solver.calc_shear())
 
-solver.plot_moment()
+#solver.plot_moment()
+solver.plot_deflection()
