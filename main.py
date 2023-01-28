@@ -2,10 +2,7 @@ from beam import Beam
 from csvreader import CsvReader
 from solver import Solver
 # defining geometry and material
-beam = Beam()
-beam.length = 3.0 # m
-beam.section = "10x22" # cm x cm
-beam.material = "C24" 
+beam = Beam(length=3.0, section="10x22", material="C24")
 
 # material properties depending on timber class
 
@@ -19,8 +16,9 @@ beam.qload = dead_q_load + live_q_load
 
 solver = Solver(beam)
 
-#print(solver.calc_moment())
-#print(solver.calc_shear())
+# print(solver.calc_moment())
+# print(solver.calc_shear())
 
-#solver.plot_moment()
+# solver.plot_moment()
+print(solver.calc_deflection())
 solver.plot_deflection()
